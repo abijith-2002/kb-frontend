@@ -10,8 +10,8 @@ module.exports = {
         // Subtle, modern, and accessible background-focused palette.
         // Keep accents and text readable with high contrast.
         app: {
-          // Primary page background: deep neutral slate for comfortable contrast
-          bg: "#0F172A",               // slate-900
+          // Primary page background: updated to #232628 per request
+          bg: "#232628",
 
           // Keep existing accent feel but aligned to modern hues
           primary: "#7DD3FC",          // sky-300 (links & primary highlights)

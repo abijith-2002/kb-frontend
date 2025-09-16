@@ -16,6 +16,7 @@ html {
 }
 
 body {
+  /* Base layout uses theme token bg-app-bg which is now #232628 */
   @apply m-0 bg-app-bg text-app-onbg;
   font-family: "Figtree", ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial,

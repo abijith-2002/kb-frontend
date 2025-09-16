@@ -1,4 +1,5 @@
 /* Minimal app-level CSS retained for CRA tests; theming handled via Tailwind in index.css */
+/* Backgrounds should use Tailwind token bg-app-bg (now #232628) instead of hardcoded colors */
 .App {
   text-align: center;
 }

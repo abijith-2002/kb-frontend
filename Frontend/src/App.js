@@ -20,6 +20,7 @@ import Dashboard from "./pages/Dashboard";
 function App() {
   return (
     <BrowserRouter>
+      {/* Global app wrapper uses bg-app-bg which maps to #232628 */}
       <div className="min-h-screen flex flex-col bg-app-bg text-app-onbg overflow-hidden">
         <NavBar />
         <main className="flex-1 overflow-hidden">
