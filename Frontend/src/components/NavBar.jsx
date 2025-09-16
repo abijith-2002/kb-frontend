@@ -42,7 +42,7 @@ export default function NavBar() {
   return (
     <nav className="bg-transparent">
       <div className="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between">
-        <Link to="/" className="font-bold text-app-primary hover:text-app-primaryDark text-lg transition-colors">
+        <Link to="/chat" className="font-bold text-app-primary hover:text-app-primaryDark text-lg transition-colors">
           KnowledgeBot
         </Link>
         <div className="flex items-center gap-4">

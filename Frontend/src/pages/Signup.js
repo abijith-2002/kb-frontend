@@ -2,7 +2,7 @@
   * PUBLIC_INTERFACE
   * Signup
   * Signup page that registers a new user with Supabase Auth using email/password.
-  * On success, user is redirected to /dashboard. Uses Tailwind for styling.
+  * On success, user is redirected to /chat. Uses Tailwind for styling.
   */
  import { useState } from "react";
  import { Link, useNavigate } from "react-router-dom";
@@ -34,7 +34,7 @@
        if (error) throw error;
  
        if (data.session) {
-         navigate("/dashboard", { replace: true });
+         navigate("/chat", { replace: true });
        } else {
          // Email confirmation likely needed; send to login.
          navigate("/login", { replace: true });

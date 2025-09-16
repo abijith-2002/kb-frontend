@@ -2,7 +2,7 @@
   * PUBLIC_INTERFACE
   * Login
   * Login page that authenticates the user via Supabase Auth using email/password.
-  * On success, user is redirected to /dashboard. Uses Tailwind for styling.
+  * On success, user is redirected to /chat. Uses Tailwind for styling.
   */
  import { useState, useEffect } from "react";
  import { Link, useNavigate } from "react-router-dom";
@@ -15,9 +15,9 @@
    const [err, setErr] = useState("");
  
    useEffect(() => {
-     // If already authenticated, go to dashboard
+     // If already authenticated, go to chat
      supabase.auth.getSession().then(({ data }) => {
-       if (data.session) navigate("/dashboard", { replace: true });
+       if (data.session) navigate("/chat", { replace: true });
      });
    }, [navigate]);
  
@@ -35,7 +35,7 @@
          password: form.password,
        });
        if (error) throw error;
-       navigate("/dashboard", { replace: true });
+       navigate("/chat", { replace: true });
      } catch (e2) {
        setErr(e2.message || "Failed to log in.");
      } finally {
