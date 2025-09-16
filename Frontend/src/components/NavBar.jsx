@@ -42,11 +42,13 @@ export default function NavBar() {
   return (
     <nav className="bg-transparent">
       <div className="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between">
-        <Link to="/" className="font-bold text-white text-lg">KnowledgeBot</Link>
+        <Link to="/" className="font-bold text-app-primary hover:text-app-primaryDark text-lg transition-colors">
+          KnowledgeBot
+        </Link>
         <div className="flex items-center gap-4">
           {authed ? (
             <>
-              <span className="text-sm text-app-onbg">{email}</span>
+              <span className="text-sm text-app-onbg-muted">{email}</span>
               <button className="btn" onClick={doLogout}>Logout</button>
             </>
           ) : null}

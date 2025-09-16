@@ -63,7 +63,7 @@
  
            <form onSubmit={onSubmit} className="space-y-3">
              <div>
-               <label className="block text-[10px] uppercase tracking-wide text-app-onbg/80 mb-0.5">
+               <label className="block text-[10px] uppercase tracking-wide text-app-onbg-muted mb-0.5">
                  Full name (optional)
                </label>
                <input
@@ -77,7 +77,7 @@
                />
              </div>
              <div>
-               <label className="block text-[10px] uppercase tracking-wide text-app-onbg/80 mb-0.5">
+               <label className="block text-[10px] uppercase tracking-wide text-app-onbg-muted mb-0.5">
                  Email
                </label>
                <input
@@ -92,7 +92,7 @@
                />
              </div>
              <div>
-               <label className="block text-[10px] uppercase tracking-wide text-app-onbg/80 mb-0.5">
+               <label className="block text-[10px] uppercase tracking-wide text-app-onbg-muted mb-0.5">
                  Password
                </label>
                <input
@@ -112,7 +112,7 @@
            </form>
  
            <div className="mt-4 text-center">
-             <Link className="small-link text-xs" to="/login">
+             <Link className="small-link" to="/login">
                Already have an account? Log in
              </Link>
            </div>

@@ -26,26 +26,37 @@ body {
   min-height: -webkit-fill-available;
 }
 
-/* Links in dark theme */
+/* Links */
 a {
-  @apply text-app-onbg underline decoration-app-accent/50 hover:text-white hover:decoration-app-accent;
+  @apply text-app-primary underline decoration-app-primary/40 hover:text-app-primaryDark hover:decoration-app-primaryDark;
 }
 
-/* Minimal auth button */
+/* Buttons */
 .btn {
   @apply inline-flex items-center justify-center px-4 py-2 rounded-md bg-app-accent text-app-onaccent font-semibold shadow-sm transition
-    hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-app-accent disabled:opacity-60;
+    hover:bg-app-accentDark focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-app-accent disabled:opacity-60;
 }
 
-/* Minimal input for dark theme */
+/* Secondary button (optional utility) */
+.btn-secondary {
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-md bg-app-secondary text-app-onsecondary font-semibold shadow-sm transition
+    hover:bg-app-secondaryDark focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-app-secondary disabled:opacity-60;
+}
+
+/* Inputs */
 .input {
-  @apply w-full rounded-md bg-transparent border border-white/10 px-3 py-2 text-app-onbg placeholder-white/30
-    focus:outline-none focus:ring-2 focus:ring-app-accent focus:border-app-accent;
+  @apply w-full rounded-md bg-transparent border border-app-border px-3 py-2 text-app-onbg placeholder-app-onbg-muted
+    focus:outline-none focus:ring-2 focus:ring-app-primary focus:border-app-primary;
 }
 
-/* Minimal card-like container for auth forms */
+/* Cards / surfaces */
 .card {
-  @apply bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur-sm;
+  @apply bg-app-surface border border-app-border rounded-xl p-6 backdrop-blur-sm;
+}
+
+/* Text helpers */
+.text-muted {
+  @apply text-app-onbg-muted;
 }
 
 /* Auth layout helpers (kept for compatibility though pages now set min-h-screen directly) */
@@ -56,11 +67,11 @@ a {
   @apply w-full max-w-md;
 }
 .auth-title {
-  @apply text-2xl font-semibold text-white;
+  @apply text-2xl font-semibold text-app-onbg;
 }
 .auth-subtle {
-  @apply text-sm text-app-onbg;
+  @apply text-sm text-app-onbg-muted;
 }
 .small-link {
-  @apply text-sm text-white hover:text-white;
+  @apply text-xs text-app-primary hover:text-app-primaryDark;
 }
