@@ -34,25 +34,29 @@ a {
 
 /* Buttons */
 .btn {
-  @apply inline-flex items-center justify-center px-4 py-2 rounded-md bg-app-accent text-app-onaccent font-semibold shadow-sm transition
+  /* High-contrast emerald CTA with soft shadow and rounded corners */
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-lg bg-app-accent text-app-onaccent font-semibold shadow-sm transition
     hover:bg-app-accentDark focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-app-accent disabled:opacity-60;
 }
 
 /* Secondary button (optional utility) */
 .btn-secondary {
-  @apply inline-flex items-center justify-center px-4 py-2 rounded-md bg-app-secondary text-app-onsecondary font-semibold shadow-sm transition
+  /* Subtle teal button harmonizing with emerald */
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-lg bg-app-secondary text-app-onsecondary font-semibold shadow-sm transition
     hover:bg-app-secondaryDark focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-app-secondary disabled:opacity-60;
 }
 
 /* Inputs */
 .input {
-  @apply w-full rounded-md bg-app-surface border border-app-border px-3 py-2 text-app-onbg placeholder-app-onbg-muted
-    focus:outline-none focus:ring-2 focus:ring-app-primary focus:border-app-primary;
+  /* Slightly raised dark input, soft borders, clear focus with sky/emerald hint */
+  @apply w-full rounded-lg bg-app-surface border border-app-border px-3 py-2.5 text-app-onbg placeholder-app-onbg-muted
+    focus:outline-none focus:ring-2 focus:ring-app-accent focus:border-app-accent;
 }
 
 /* Cards / surfaces */
 .card {
-  @apply bg-app-surfaceMuted border border-app-border rounded-xl p-6 backdrop-blur-[2px];
+  /* Muted card with subtle elevation and crisp borders for dark UI */
+  @apply bg-app-surfaceMuted border border-app-border rounded-2xl p-6 backdrop-blur-[2px] shadow-sm;
 }
 
 /* Sections / raised containers */

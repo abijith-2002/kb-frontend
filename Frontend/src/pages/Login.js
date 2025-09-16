@@ -44,27 +44,27 @@
    };
  
    return (
-     <section className="min-h-[92vh] flex items-center justify-center px-3 py-2 overflow-hidden">
+     <section className="min-h-[92vh] flex items-center justify-center px-4 py-6 overflow-hidden">
        <div className="w-full max-w-sm">
-         <div className="card p-5">
-           <div className="mb-4 text-center">
+         <div className="card p-6">
+           <div className="mb-5 text-center">
              <h1 className="auth-title text-xl">KnowledgeBot</h1>
-             <p className="auth-subtle mt-0.5 text-xs">Sign in to continue</p>
+             <p className="auth-subtle mt-1 text-xs">Sign in to continue</p>
            </div>
  
            {err && (
-             <div className="mb-3 text-red-400 text-xs" role="alert" aria-live="polite">
+             <div className="mb-3 text-red-400/90 text-xs" role="alert" aria-live="polite">
                {err}
              </div>
            )}
  
-           <form onSubmit={onSubmit} className="space-y-3">
+           <form onSubmit={onSubmit} className="space-y-3.5">
              <div>
-               <label className="block text-[10px] uppercase tracking-wide text-app-onbg-muted mb-0.5">
+               <label className="block text-[10px] uppercase tracking-wide text-app-onbg-muted mb-1">
                  Email
                </label>
                <input
-                 className="input py-1.5"
+                 className="input"
                  type="email"
                  name="email"
                  value={form.email}
@@ -75,11 +75,11 @@
                />
              </div>
              <div>
-               <label className="block text-[10px] uppercase tracking-wide text-app-onbg-muted mb-0.5">
+               <label className="block text-[10px] uppercase tracking-wide text-app-onbg-muted mb-1">
                  Password
                </label>
                <input
-                 className="input py-1.5"
+                 className="input"
                  type="password"
                  name="password"
                  value={form.password}
@@ -89,12 +89,12 @@
                  required
                />
              </div>
-             <button className="btn w-full py-2" disabled={loading} type="submit" aria-busy={loading}>
+             <button className="btn w-full py-2.5" disabled={loading} type="submit" aria-busy={loading}>
                {loading ? "Logging in..." : "Log in"}
              </button>
            </form>
  
-           <div className="mt-4 text-center">
+           <div className="mt-5 text-center">
              <Link className="small-link" to="/signup">
                New here? Create an account
              </Link>
