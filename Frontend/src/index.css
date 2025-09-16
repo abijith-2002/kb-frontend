@@ -1,5 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global fallbacks and base styles */
+html, body, #root {
+  height: 100%;
+}
+
 body {
-  margin: 0;
+  @apply m-0 bg-gray-50 text-gray-900;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -7,7 +16,18 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+a {
+  @apply text-kavia-orange hover:opacity-90;
+}
+
+.btn {
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-md bg-kavia-orange text-white font-semibold shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-kavia-orange disabled:opacity-50;
+}
+
+.input {
+  @apply w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-kavia-orange;
+}
+
+.card {
+  @apply bg-white shadow rounded-lg p-6;
 }
