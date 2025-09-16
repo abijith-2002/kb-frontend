@@ -48,7 +48,7 @@ a {
   @apply bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur-sm;
 }
 
-/* Auth layout helper to ensure centered and avoid vertical scrolling on reasonable devices */
+/* Auth layout helpers (kept for compatibility though pages now set min-h-screen directly) */
 .auth-screen {
   @apply min-h-screen w-full flex items-center justify-center px-4;
 }

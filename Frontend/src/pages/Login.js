@@ -44,8 +44,8 @@
    };
  
    return (
-     <section className="auth-screen">
-       <div className="auth-container">
+     <section className="min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden">
+       <div className="w-full max-w-md">
          <div className="card">
            <div className="mb-6 text-center">
              <h1 className="auth-title">KnowledgeBot</h1>

@@ -22,7 +22,7 @@ function App() {
     <BrowserRouter>
       <div className="min-h-screen flex flex-col bg-app-bg text-app-onbg">
         <NavBar />
-        <main className="flex-1">
+        <main className="flex-1 overflow-hidden">
           <Routes>
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/login" element={<Login />} />
