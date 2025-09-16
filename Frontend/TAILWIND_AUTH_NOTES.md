@@ -5,7 +5,7 @@
 - Tailwind directives inserted into src/index.css.
 - Supabase client initialized in src/lib/supabaseClient.js using:
   - REACT_APP_SUPABASE_URL
-  - REACT_APP_SUPABASE_ANON_KEY
+  - REACT_APP_SUPABASE_ANON_KEY (this must be set; otherwise the app will throw a descriptive error)
 - Routes:
   - /login, /signup (public)
   - /dashboard (protected)
