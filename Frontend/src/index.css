@@ -28,7 +28,7 @@ body {
 
 /* Links */
 a {
-  @apply text-app-primary underline decoration-app-primary/40 hover:text-app-primaryDark hover:decoration-app-primaryDark;
+  @apply text-app-primary underline decoration-app-accent/50 hover:decoration-app-accentDark;
 }
 
 /* Buttons */
@@ -73,5 +73,5 @@ a {
   @apply text-sm text-app-onbg-muted;
 }
 .small-link {
-  @apply text-xs text-app-primary hover:text-app-primaryDark;
+  @apply text-xs text-app-accent hover:text-app-accentDark;
 }

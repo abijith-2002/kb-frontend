@@ -23,9 +23,9 @@ module.exports = {
           onsecondary: "#073B2A",    // Text on secondary
 
           // Accent and interactive (CTA buttons)
-          accent: "#F472B6",         // Pink 400
-          accentDark: "#EC4899",     // Pink 500 (hover/active)
-          onaccent: "#2A0E1F",       // Text on accent
+          accent: "#539769",         // New accent (green)
+          accentDark: "#457E57",     // Darker shade for hover/active
+          onaccent: "#0F1913",       // Text on accent (dark green-tinted on-light)
 
           // Text colors for on-background content
           onbg: "#E5E7EB",           // Gray 200 (primary text on bg)
