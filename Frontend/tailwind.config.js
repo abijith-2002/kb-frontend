@@ -7,33 +7,38 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Harmonious palette built around a deep slate background.
-        // Background stays unchanged (app.bg).
+        // Subtle, modern, and accessible background-focused palette.
+        // Keep accents and text readable with high contrast.
         app: {
-          bg: "#2C2F37",             // Background (unchanged)
+          // Primary page background: deep neutral slate for comfortable contrast
+          bg: "#0F172A",               // slate-900
 
-          // Brand/primary elements (links, key highlights)
-          primary: "#7DD3FC",        // Sky 300
-          primaryDark: "#38BDF8",    // Sky 400 (hover)
-          onprimary: "#0B1220",      // Text on primary
+          // Keep existing accent feel but aligned to modern hues
+          primary: "#7DD3FC",          // sky-300 (links & primary highlights)
+          primaryDark: "#38BDF8",      // sky-400 (hover)
+          onprimary: "#0B1220",
 
-          // Secondary elements (subtle highlights, outlines)
-          secondary: "#A7F3D0",      // Emerald 200
-          secondaryDark: "#34D399",  // Emerald 400 (hover)
-          onsecondary: "#073B2A",    // Text on secondary
+          // Secondary (pills / subtle highlights)
+          secondary: "#A7F3D0",        // emerald-200
+          secondaryDark: "#34D399",    // emerald-400
+          onsecondary: "#052018",
 
-          // Accent and interactive (CTA buttons)
-          accent: "#539769",         // New accent (green)
-          accentDark: "#457E57",     // Darker shade for hover/active
-          onaccent: "#0F1913",       // Text on accent (dark green-tinted on-light)
+          // Accent for CTAs (preserved tone, slightly tuned for better contrast)
+          accent: "#22C55E",           // green-500
+          accentDark: "#16A34A",       // green-600
+          onaccent: "#06210F",
 
-          // Text colors for on-background content
-          onbg: "#E5E7EB",           // Gray 200 (primary text on bg)
-          "onbg-muted": "#A1A1AA",   // Zinc 400 (muted text)
+          // On-background text
+          onbg: "#E5E7EB",             // gray-200
+          "onbg-muted": "#94A3B8",     // slate-400
 
-          // Surfaces and borders
-          surface: "#343844",        // Slightly raised surface
-          border: "#525866"          // Border on dark surfaces
+          // Surfaces/cards with layered elevation
+          surface: "#111827",          // gray-900 (base surface)
+          surfaceAlt: "#0B1220",       // deeper overlay surface for sections
+          surfaceMuted: "#1F2937",     // gray-800 (muted containers)
+
+          // Borders and dividers tuned for dark backgrounds
+          border: "#334155"            // slate-600
         }
       },
       fontFamily: {

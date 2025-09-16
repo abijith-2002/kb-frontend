@@ -45,13 +45,18 @@ a {
 
 /* Inputs */
 .input {
-  @apply w-full rounded-md bg-transparent border border-app-border px-3 py-2 text-app-onbg placeholder-app-onbg-muted
+  @apply w-full rounded-md bg-app-surface border border-app-border px-3 py-2 text-app-onbg placeholder-app-onbg-muted
     focus:outline-none focus:ring-2 focus:ring-app-primary focus:border-app-primary;
 }
 
 /* Cards / surfaces */
 .card {
-  @apply bg-app-surface border border-app-border rounded-xl p-6 backdrop-blur-sm;
+  @apply bg-app-surfaceMuted border border-app-border rounded-xl p-6 backdrop-blur-[2px];
+}
+
+/* Sections / raised containers */
+.section {
+  @apply bg-app-surfaceAlt border border-app-border/70 rounded-2xl p-6;
 }
 
 /* Text helpers */

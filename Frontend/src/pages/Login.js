@@ -46,7 +46,7 @@
    return (
      <section className="min-h-[92vh] flex items-center justify-center px-3 py-2 overflow-hidden">
        <div className="w-full max-w-sm">
-         <div className="card p-4">
+         <div className="card p-5">
            <div className="mb-4 text-center">
              <h1 className="auth-title text-xl">KnowledgeBot</h1>
              <p className="auth-subtle mt-0.5 text-xs">Sign in to continue</p>

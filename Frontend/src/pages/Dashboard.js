@@ -31,14 +31,16 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-[60vh] mx-auto max-w-5xl p-4">
-      <div className="card">
-        <h1 className="text-2xl font-bold mb-2 text-app-onbg">Dashboard</h1>
-        <p className="text-app-onbg">
-          Logged in as: <span className="font-semibold text-app-primary">{email}</span>
-        </p>
-        <p className="text-sm text-app-onbg-muted mt-4">
-          Next steps: upload documents, create sessions, and chat. This is a placeholder.
-        </p>
+      <div className="section">
+        <div className="card">
+          <h1 className="text-2xl font-bold mb-2 text-app-onbg">Dashboard</h1>
+          <p className="text-app-onbg">
+            Logged in as: <span className="font-semibold text-app-primary">{email}</span>
+          </p>
+          <p className="text-sm text-app-onbg-muted mt-4">
+            Next steps: upload documents, create sessions, and chat. This is a placeholder.
+          </p>
+        </div>
       </div>
     </div>
   );
