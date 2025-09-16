@@ -47,27 +47,27 @@
    };
  
    return (
-     <section className="min-h-screen flex items-center justify-center px-4 overflow-hidden">
-       <div className="w-full max-w-md">
-         <div className="card">
-           <div className="mb-6 text-center">
-             <h1 className="auth-title">Create your account</h1>
-             <p className="auth-subtle mt-1">Start your KnowledgeBot journey</p>
+     <section className="min-h-[92vh] flex items-center justify-center px-3 py-2 overflow-hidden">
+       <div className="w-full max-w-sm">
+         <div className="card p-4">
+           <div className="mb-4 text-center">
+             <h1 className="auth-title text-xl">Create your account</h1>
+             <p className="auth-subtle mt-0.5 text-xs">Start your KnowledgeBot journey</p>
            </div>
  
            {err && (
-             <div className="mb-4 text-red-400 text-sm" role="alert" aria-live="polite">
+             <div className="mb-3 text-red-400 text-xs" role="alert" aria-live="polite">
                {err}
              </div>
            )}
  
-           <form onSubmit={onSubmit} className="space-y-4">
+           <form onSubmit={onSubmit} className="space-y-3">
              <div>
-               <label className="block text-xs uppercase tracking-wide text-app-onbg/80 mb-1">
+               <label className="block text-[10px] uppercase tracking-wide text-app-onbg/80 mb-0.5">
                  Full name (optional)
                </label>
                <input
-                 className="input"
+                 className="input py-1.5"
                  type="text"
                  name="full_name"
                  value={form.full_name}
@@ -77,11 +77,11 @@
                />
              </div>
              <div>
-               <label className="block text-xs uppercase tracking-wide text-app-onbg/80 mb-1">
+               <label className="block text-[10px] uppercase tracking-wide text-app-onbg/80 mb-0.5">
                  Email
                </label>
                <input
-                 className="input"
+                 className="input py-1.5"
                  type="email"
                  name="email"
                  value={form.email}
@@ -92,11 +92,11 @@
                />
              </div>
              <div>
-               <label className="block text-xs uppercase tracking-wide text-app-onbg/80 mb-1">
+               <label className="block text-[10px] uppercase tracking-wide text-app-onbg/80 mb-0.5">
                  Password
                </label>
                <input
-                 className="input"
+                 className="input py-1.5"
                  type="password"
                  name="password"
                  value={form.password}
@@ -106,13 +106,13 @@
                  required
                />
              </div>
-             <button className="btn w-full" disabled={loading} type="submit" aria-busy={loading}>
+             <button className="btn w-full py-2" disabled={loading} type="submit" aria-busy={loading}>
                {loading ? "Signing up..." : "Sign up"}
              </button>
            </form>
  
-           <div className="mt-6 text-center">
-             <Link className="small-link" to="/login">
+           <div className="mt-4 text-center">
+             <Link className="small-link text-xs" to="/login">
                Already have an account? Log in
              </Link>
            </div>
