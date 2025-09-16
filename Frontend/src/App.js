@@ -20,7 +20,7 @@ import Dashboard from "./pages/Dashboard";
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col bg-app-bg text-app-onbg">
+      <div className="min-h-screen flex flex-col bg-app-bg text-app-onbg overflow-hidden">
         <NavBar />
         <main className="flex-1 overflow-hidden">
           <Routes>

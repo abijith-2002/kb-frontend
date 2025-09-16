@@ -49,12 +49,7 @@ export default function NavBar() {
               <span className="text-sm text-app-onbg">{email}</span>
               <button className="btn" onClick={doLogout}>Logout</button>
             </>
-          ) : (
-            <>
-              <Link to="/login" className="btn">Login</Link>
-              <Link to="/signup" className="btn">Sign Up</Link>
-            </>
-          )}
+          ) : null}
         </div>
       </div>
     </nav>
