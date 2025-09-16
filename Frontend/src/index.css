@@ -2,32 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Global fallbacks and base styles */
+/* Import Figtree from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap');
+
+/* Global base styles and dark theme background */
 html, body, #root {
   height: 100%;
 }
 
+html {
+  /* Support safe area to help avoid scroll on mobile notch devices */
+  height: -webkit-fill-available;
+}
+
 body {
-  @apply m-0 bg-gray-50 text-gray-900;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  @apply m-0 bg-app-bg text-app-onbg;
+  font-family: "Figtree", ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial,
+    'Noto Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
 }
 
+/* Links in dark theme */
 a {
-  @apply text-kavia-orange hover:opacity-90;
+  @apply text-app-onbg underline decoration-app-accent/50 hover:text-white hover:decoration-app-accent;
 }
 
+/* Minimal auth button */
 .btn {
-  @apply inline-flex items-center justify-center px-4 py-2 rounded-md bg-kavia-orange text-white font-semibold shadow-sm hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-kavia-orange disabled:opacity-50;
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-md bg-app-accent text-app-onaccent font-semibold shadow-sm transition
+    hover:opacity-95 focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-app-accent disabled:opacity-60;
 }
 
+/* Minimal input for dark theme */
 .input {
-  @apply w-full rounded-md border border-gray-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-kavia-orange;
+  @apply w-full rounded-md bg-transparent border border-white/10 px-3 py-2 text-app-onbg placeholder-white/30
+    focus:outline-none focus:ring-2 focus:ring-app-accent focus:border-app-accent;
 }
 
+/* Minimal card-like container for auth forms */
 .card {
-  @apply bg-white shadow rounded-lg p-6;
+  @apply bg-white/5 border border-white/10 rounded-xl p-6 backdrop-blur-sm;
+}
+
+/* Auth layout helper to ensure centered and avoid vertical scrolling on reasonable devices */
+.auth-screen {
+  @apply min-h-screen w-full flex items-center justify-center px-4;
+}
+.auth-container {
+  @apply w-full max-w-md;
+}
+.auth-title {
+  @apply text-2xl font-semibold text-white;
+}
+.auth-subtle {
+  @apply text-sm text-app-onbg;
+}
+.small-link {
+  @apply text-sm text-white hover:text-white;
 }
