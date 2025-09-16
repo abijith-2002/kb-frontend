@@ -6,6 +6,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import Chat from "./pages/Chat";
 
 /**
  * PUBLIC_INTERFACE
@@ -16,6 +17,7 @@ import Dashboard from "./pages/Dashboard";
  *  - /login      -> Login page
  *  - /signup     -> Signup page
  *  - /dashboard  -> Protected dashboard page
+ *  - /chat, /chat/:sessionId -> Protected chat page
  */
 function App() {
   return (
@@ -33,6 +35,22 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/chat"
+              element={
+                <ProtectedRoute>
+                  <Chat />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/chat/:sessionId"
+              element={
+                <ProtectedRoute>
+                  <Chat />
                 </ProtectedRoute>
               }
             />
