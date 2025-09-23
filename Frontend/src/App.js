@@ -6,16 +6,18 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import Chat from "./pages/Chat";
 
 /**
  * PUBLIC_INTERFACE
  * App
  * Main application component that wires up React Router routes, Supabase-protected routes,
  * and the top navigation bar. Routes:
- *  - /           -> redirects to /dashboard or /login depending on session (handled via ProtectedRoute and login page)
+ *  - /           -> redirects to /chat
  *  - /login      -> Login page
  *  - /signup     -> Signup page
  *  - /dashboard  -> Protected dashboard page
+ *  - /chat       -> Protected chat page (new)
  */
 function App() {
   return (
@@ -25,7 +27,7 @@ function App() {
         <NavBar />
         <main className="flex-1 overflow-hidden">
           <Routes>
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
+            <Route path="/" element={<Navigate to="/chat" replace />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route
@@ -33,6 +35,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/chat"
+              element={
+                <ProtectedRoute>
+                  <Chat />
                 </ProtectedRoute>
               }
             />

@@ -38,7 +38,7 @@ export default function Dashboard() {
             Logged in as: <span className="font-semibold text-app-primary">{email}</span>
           </p>
           <p className="text-sm text-app-onbg-muted mt-4">
-            Next steps: upload documents, create sessions, and chat. This is a placeholder.
+            Next steps: upload documents, create sessions, and chat. Open the new chat interface at <span className="text-app-primary font-medium">/chat</span>.
           </p>
         </div>
       </div>

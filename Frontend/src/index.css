@@ -5,6 +5,25 @@
 /* Import Figtree from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap');
 
+/* Design token variables for chat UI (from assets/chat_interface_design_notes.md) */
+:root {
+  --bg-canvas: #0F1A17;
+  --panel-surface: #15211D;
+  --sidebar-surface: #111B18;
+  --surface-elevated: #1C2A24;
+  --text-primary: #E7F5EF;
+  --text-secondary: #B7C8C1;
+  --text-tertiary: #8DA39C;
+  --border-subtle: rgba(231,245,239,0.08);
+  --accent: #67E6A1;
+  --accent-strong: #45D38A;
+  --success: #49E68B;
+  --badge-bg: rgba(103,230,161,0.12);
+  --muted-icon: #6F847C;
+  --input-bg: #182620;
+  --code-bg: #101915;
+}
+
 /* Global base styles and dark theme background */
 html, body, #root {
   height: 100%;
@@ -16,72 +35,92 @@ html {
 }
 
 body {
-  /* Base layout uses theme token bg-app-bg which is now #232628 */
-  @apply m-0 bg-app-bg text-app-onbg;
-  font-family: "Figtree", ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial,
-    'Noto Sans', sans-serif;
+  /* Override base bg with design token canvas */
+  margin: 0;
+  background: var(--bg-canvas);
+  color: var(--text-secondary);
+  font-family: "Figtree", "Helvetica Neue", ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', Arial, 'Noto Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
   min-height: -webkit-fill-available;
 }
 
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid rgba(103,230,161,0.35);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
 /* Links */
 a {
-  @apply text-app-primary underline decoration-app-accent/50 hover:decoration-app-accentDark;
+  color: #93C5FD;
+  text-decoration: underline;
+  text-decoration-color: rgba(103,230,161,0.5);
+}
+a:hover {
+  text-decoration-color: var(--accent-strong);
 }
 
 /* Buttons */
 .btn {
-  /* High-contrast emerald CTA with soft shadow and rounded corners */
-  @apply inline-flex items-center justify-center px-4 py-2 rounded-lg bg-app-accent text-app-onaccent font-semibold shadow-sm transition
-    hover:bg-app-accentDark focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-app-accent disabled:opacity-60;
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-semibold shadow-sm transition focus:outline-none focus:ring-2 focus:ring-offset-0;
+  background: #479470;
+  color: #F2FBF7;
 }
+.btn:hover { background: #38765A; }
 
-/* Secondary button (optional utility) */
+/* Secondary button */
 .btn-secondary {
-  /* Subtle teal button harmonizing with emerald */
-  @apply inline-flex items-center justify-center px-4 py-2 rounded-lg bg-app-secondary text-app-onsecondary font-semibold shadow-sm transition
-    hover:bg-app-secondaryDark focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-app-secondary disabled:opacity-60;
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-lg font-semibold shadow-sm transition focus:outline-none focus:ring-2 focus:ring-offset-0;
+  background: #5FA28B;
+  color: #0C1612;
 }
+.btn-secondary:hover { background: #4A8A77; }
 
 /* Inputs */
 .input {
-  /* Slightly raised dark input, soft borders, clear focus with sky/emerald hint */
-  @apply w-full rounded-lg bg-app-surface border border-app-border px-3 py-2.5 text-app-onbg placeholder-app-onbg-muted
-    focus:outline-none focus:ring-2 focus:ring-app-accent focus:border-app-accent;
+  width: 100%;
+  border-radius: 10px;
+  background: #1E2325;
+  border: 1px solid #3B4548;
+  padding: 10px 12px;
+  color: #E5E7EB;
+}
+.input::placeholder { color: #9AA5B1; }
+.input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(103,230,161,0.35);
+  border-color: #479470;
 }
 
 /* Cards / surfaces */
 .card {
-  /* Muted card with subtle elevation and crisp borders for dark UI */
-  @apply bg-app-surfaceMuted border border-app-border rounded-2xl p-6 backdrop-blur-[2px] shadow-sm;
+  background: #2A2F31;
+  border: 1px solid #3B4548;
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(2px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.2);
 }
 
 /* Sections / raised containers */
 .section {
-  @apply bg-app-surfaceAlt border border-app-border/70 rounded-2xl p-6;
+  background: #1A1F21;
+  border: 1px solid rgba(59, 69, 72, 0.7);
+  border-radius: 16px;
+  padding: 24px;
 }
 
 /* Text helpers */
-.text-muted {
-  @apply text-app-onbg-muted;
-}
+.text-muted { color: #9AA5B1; }
 
-/* Auth layout helpers (kept for compatibility though pages now set min-h-screen directly) */
-.auth-screen {
-  @apply min-h-screen w-full flex items-center justify-center px-4;
-}
-.auth-container {
-  @apply w-full max-w-md;
-}
-.auth-title {
-  @apply text-2xl font-semibold text-app-onbg;
-}
-.auth-subtle {
-  @apply text-sm text-app-onbg-muted;
-}
-.small-link {
-  @apply text-xs text-app-accent hover:text-app-accentDark;
-}
+/* Auth layout helpers (kept) */
+.auth-screen { @apply min-h-screen w-full flex items-center justify-center px-4; }
+.auth-container { @apply w-full max-w-md; }
+.auth-title { @apply text-2xl font-semibold; color: #E5E7EB; }
+.auth-subtle { @apply text-sm; color: #9AA5B1; }
+.small-link { @apply text-xs; color: #479470; }
+.small-link:hover { color: #38765A; }
