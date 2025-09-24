@@ -15,9 +15,9 @@
    const [err, setErr] = useState("");
  
    useEffect(() => {
-     // If already authenticated, go to dashboard
+     // If already authenticated, go to chat
      supabase.auth.getSession().then(({ data }) => {
-       if (data.session) navigate("/dashboard", { replace: true });
+       if (data.session) navigate("/chat", { replace: true });
      });
    }, [navigate]);
  
@@ -35,7 +35,7 @@
          password: form.password,
        });
        if (error) throw error;
-       navigate("/dashboard", { replace: true });
+       navigate("/chat", { replace: true });
      } catch (e2) {
        setErr(e2.message || "Failed to log in.");
      } finally {
