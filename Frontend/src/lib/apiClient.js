@@ -27,6 +27,9 @@
  /**
   * Fetch wrapper that automatically adds Authorization: Bearer <jwt>.
   * Handles JSON and multipart requests.
+  *
+  * IMPORTANT: Read the Response body only once. We parse body into a single string,
+  * try JSON.parse on it, and use that single parsed value to avoid "body stream already read".
   */
  async function authedFetch(getSessionFn, path, options = {}) {
    const base = API_BASE || "";
@@ -39,15 +42,22 @@
    if (accessToken) headers.set("Authorization", `Bearer ${accessToken}`);
  
    const resp = await fetch(url, { ...options, headers });
+ 
+   // Read body exactly once (as text), then attempt JSON parse.
+   const rawText = await resp.text();
+   let parsed;
+   let isJson = false;
+   try {
+     parsed = rawText ? JSON.parse(rawText) : null;
+     isJson = true;
+   } catch (_e) {
+     parsed = rawText;
+   }
+ 
    if (!resp.ok) {
-     // Try to parse JSON error, or fallback to text
-     let detail;
-     try {
-       const data = await resp.json();
-       detail = data?.detail || data?.message || JSON.stringify(data);
-     } catch (e) {
-       detail = await resp.text();
-     }
+     const detail =
+       (isJson && (parsed?.detail || parsed?.message || JSON.stringify(parsed))) ||
+       (rawText || `${resp.status} ${resp.statusText}`);
      const err = new Error(
        `[API] ${options.method || "GET"} ${path} failed: ${resp.status} ${resp.statusText} :: ${detail}`
      );
@@ -55,9 +65,9 @@
      err.body = detail;
      throw err;
    }
-   const contentType = resp.headers.get("content-type") || "";
-   if (contentType.includes("application/json")) return resp.json();
-   return resp.text();
+ 
+   // Success: return parsed JSON if available, else text
+   return isJson ? parsed : rawText;
  }
  
  /**
