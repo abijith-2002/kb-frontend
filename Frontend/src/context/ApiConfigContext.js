@@ -40,7 +40,7 @@ export function ApiConfigProvider({ children }) {
     setApiBaseUrl(norm);
   }, []);
 
-  // Health check with fallback path
+  // Health check strictly against "<API_BASE_URL>/"
   const controllerRef = useRef(null);
 
   // PUBLIC_INTERFACE
@@ -50,29 +50,23 @@ export function ApiConfigProvider({ children }) {
     controllerRef.current = new AbortController();
 
     const base = apiBaseUrl || "";
-    const candidates = ["/health", "/"];
-    let lastErr;
-    for (const path of candidates) {
-      const url = `${base}${path}`;
-      try {
-        const res = await fetch(url, { method: "GET", signal: controllerRef.current.signal });
-        if (res.ok) {
-          // try to parse json, but tolerate text
-          try {
-            const data = await res.json();
-            return { ok: true, data };
-          } catch (_e) {
-            const txt = await res.text();
-            return { ok: true, data: txt };
-          }
-        } else {
-          lastErr = new Error(`${res.status} ${res.statusText}`);
+    const url = `${base}/`; // per requirement: health check must be sent to '<API_BASE_URL>/'
+    try {
+      const res = await fetch(url, { method: "GET", signal: controllerRef.current.signal });
+      if (res.ok) {
+        // try to parse json, but tolerate text
+        try {
+          const data = await res.json();
+          return { ok: true, data };
+        } catch (_e) {
+          const txt = await res.text();
+          return { ok: true, data: txt };
         }
-      } catch (e) {
-        lastErr = e;
       }
+      return { ok: false, error: `${res.status} ${res.statusText}` };
+    } catch (e) {
+      return { ok: false, error: e?.message || "Unknown error" };
     }
-    return { ok: false, error: lastErr?.message || "Unknown error" };
   }, [apiBaseUrl]);
 
   const value = useMemo(
