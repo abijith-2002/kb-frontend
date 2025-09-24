@@ -6,9 +6,9 @@ import { PaperclipIcon, PlusIcon, SendIcon } from "./Icons";
  * Composer
  * Bottom input composer with attachment button and text input, matching pill-rectangle style and tokens.
  */
-export default function Composer({ value, onChange, onSend, onUpload, isSending = false }) {
+export default function Composer({ value, onChange, onSend, onUpload, isSending = false, disabled = false }) {
   const fileRef = useRef(null);
-  const canSend = useMemo(() => (value || "").trim().length > 0 && !isSending, [value, isSending]);
+  const canSend = useMemo(() => (value || "").trim().length > 0 && !isSending && !disabled, [value, isSending, disabled]);
 
   const openPicker = () => fileRef.current?.click();
 
