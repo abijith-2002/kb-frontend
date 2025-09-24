@@ -5,33 +5,34 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Chat from "./pages/Chat";
+import Dashboard from "./pages/Dashboard";
 
 /**
  * PUBLIC_INTERFACE
  * App
  * Main application component that wires up React Router routes, Supabase-protected routes,
  * and the top navigation bar. Routes:
- *  - /           -> redirects to /chat
+ *  - /           -> redirects to /dashboard or /login depending on session (handled via ProtectedRoute and login page)
  *  - /login      -> Login page
  *  - /signup     -> Signup page
- *  - /chat       -> Protected chat page
+ *  - /dashboard  -> Protected dashboard page
  */
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen flex flex-col bg-canvas text-primary overflow-hidden">
+      {/* Global app wrapper uses bg-app-bg which maps to #232628 */}
+      <div className="min-h-screen flex flex-col bg-app-bg text-app-onbg overflow-hidden">
         <NavBar />
         <main className="flex-1 overflow-hidden">
           <Routes>
-            <Route path="/" element={<Navigate to="/chat" replace />} />
+            <Route path="/" element={<Navigate to="/dashboard" replace />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route
-              path="/chat"
+              path="/dashboard"
               element={
                 <ProtectedRoute>
-                  <Chat />
+                  <Dashboard />
                 </ProtectedRoute>
               }
             />

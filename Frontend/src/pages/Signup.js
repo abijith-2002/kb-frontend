@@ -34,7 +34,7 @@
        if (error) throw error;
  
        if (data.session) {
-         navigate("/chat", { replace: true });
+         navigate("/dashboard", { replace: true });
        } else {
          // Email confirmation likely needed; send to login.
          navigate("/login", { replace: true });

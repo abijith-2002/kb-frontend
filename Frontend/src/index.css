@@ -5,59 +5,19 @@
 /* Import Figtree from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;500;600;700&display=swap');
 
-/* Design tokens from assets/chat_window_design_notes.md */
-:root {
-  /* Color palette */
-  --bg-canvas: #0F1412;
-  --bg-panel: #1E2623;
-  --bg-panel-elev: #23302B;
-  --surface-muted: #2A3731;
-  --accent: #23C483;
-  --accent-strong: #1AAF73;
-  --text-primary: #E6F3ED;
-  --text-secondary: #B5CDC3;
-  --text-tertiary: #8AA398;
-  --link: #7ED1AE;
-  --border-subtle: rgba(255,255,255,0.06);
-  --input-bg: #1D2622;
-  --chip-bg: #23312B;
-  --chip-text: #CDE7DB;
-  --success: #21C47C;
-
-  /* Spacing scale */
-  --space-4: 4px;
-  --space-6: 6px;
-  --space-8: 8px;
-  --space-12: 12px;
-  --space-16: 16px;
-  --space-20: 20px;
-  --space-24: 24px;
-  --space-28: 28px;
-  --space-32: 32px;
-
-  /* Radii */
-  --radius-10: 10px;
-  --radius-12: 12px;
-  --radius-14: 14px;
-  --radius-pill: 999px;
-
-  /* Focus ring */
-  --focus-ring: 0 0 0 2px rgba(35,196,131,0.5);
-}
-
 /* Global base styles and dark theme background */
 html, body, #root {
   height: 100%;
 }
 
 html {
+  /* Support safe area to help avoid scroll on mobile notch devices */
   height: -webkit-fill-available;
 }
 
 body {
-  margin: 0;
-  color: var(--text-primary);
-  background: var(--bg-canvas);
+  /* Base layout uses theme token bg-app-bg which is now #232628 */
+  @apply m-0 bg-app-bg text-app-onbg;
   font-family: "Figtree", ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial,
     'Noto Sans', sans-serif;
@@ -69,67 +29,59 @@ body {
 
 /* Links */
 a {
-  color: var(--link);
-  text-decoration: underline;
-  text-decoration-color: color-mix(in srgb, var(--accent) 50%, transparent);
-}
-a:hover {
-  text-decoration-color: var(--accent-strong);
+  @apply text-app-primary underline decoration-app-accent/50 hover:decoration-app-accentDark;
 }
 
-/* Generic focus outline */
-:where(button, a, input, textarea, [role="button"]):focus-visible {
-  outline: var(--focus-ring);
+/* Buttons */
+.btn {
+  /* High-contrast emerald CTA with soft shadow and rounded corners */
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-lg bg-app-accent text-app-onaccent font-semibold shadow-sm transition
+    hover:bg-app-accentDark focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-app-accent disabled:opacity-60;
 }
 
-/* Utility classes mapping tokens (used by chat UI) */
-.text-primary { color: var(--text-primary); }
-.text-secondary { color: var(--text-secondary); }
-.text-tertiary { color: var(--text-tertiary); }
-
-.bg-canvas { background: var(--bg-canvas); }
-.bg-panel { background: var(--bg-panel); }
-.bg-panel-elev { background: var(--bg-panel-elev); }
-.bg-surface-muted { background: var(--surface-muted); }
-
-.border-subtle { border: 1px solid var(--border-subtle); }
-.border-t-subtle { border-top: 1px solid var(--border-subtle); }
-.border-b-subtle { border-bottom: 1px solid var(--border-subtle); }
-
-.round-10 { border-radius: var(--radius-10); }
-.round-12 { border-radius: var(--radius-12); }
-.round-14 { border-radius: var(--radius-14); }
-.round-pill { border-radius: var(--radius-pill); }
-
-.btn-accent {
-  background: var(--accent);
-  color: #0E1613;
-}
-.btn-accent:hover { background: var(--accent-strong); }
-
-.btn-ghost {
-  background: transparent;
-  color: var(--text-primary);
-  border: 1px solid var(--border-subtle);
-  backdrop-filter: none;
-}
-.btn-ghost:hover { background: var(--chip-bg); }
-
-.btn-icon {
-  background: var(--input-bg);
-  color: var(--text-secondary);
-  border: 1px solid var(--border-subtle);
+/* Secondary button (optional utility) */
+.btn-secondary {
+  /* Subtle teal button harmonizing with emerald */
+  @apply inline-flex items-center justify-center px-4 py-2 rounded-lg bg-app-secondary text-app-onsecondary font-semibold shadow-sm transition
+    hover:bg-app-secondaryDark focus:outline-none focus:ring-2 focus:ring-offset-0 focus:ring-app-secondary disabled:opacity-60;
 }
 
-.input-dark {
-  background: var(--input-bg);
-  color: var(--text-primary);
-  border: 1px solid var(--border-subtle);
+/* Inputs */
+.input {
+  /* Slightly raised dark input, soft borders, clear focus with sky/emerald hint */
+  @apply w-full rounded-lg bg-app-surface border border-app-border px-3 py-2.5 text-app-onbg placeholder-app-onbg-muted
+    focus:outline-none focus:ring-2 focus:ring-app-accent focus:border-app-accent;
 }
 
-/* Auth layout helpers retained */
-.auth-screen { @apply min-h-screen w-full flex items-center justify-center px-4; }
-.auth-container { @apply w-full max-w-md; }
-.auth-title { @apply text-2xl font-semibold; color: var(--text-primary); }
-.auth-subtle { @apply text-sm; color: var(--text-tertiary); }
-.small-link { @apply text-xs; color: var(--link); }
+/* Cards / surfaces */
+.card {
+  /* Muted card with subtle elevation and crisp borders for dark UI */
+  @apply bg-app-surfaceMuted border border-app-border rounded-2xl p-6 backdrop-blur-[2px] shadow-sm;
+}
+
+/* Sections / raised containers */
+.section {
+  @apply bg-app-surfaceAlt border border-app-border/70 rounded-2xl p-6;
+}
+
+/* Text helpers */
+.text-muted {
+  @apply text-app-onbg-muted;
+}
+
+/* Auth layout helpers (kept for compatibility though pages now set min-h-screen directly) */
+.auth-screen {
+  @apply min-h-screen w-full flex items-center justify-center px-4;
+}
+.auth-container {
+  @apply w-full max-w-md;
+}
+.auth-title {
+  @apply text-2xl font-semibold text-app-onbg;
+}
+.auth-subtle {
+  @apply text-sm text-app-onbg-muted;
+}
+.small-link {
+  @apply text-xs text-app-accent hover:text-app-accentDark;
+}
