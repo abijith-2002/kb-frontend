@@ -12,11 +12,18 @@
   */
  import { useCallback, useEffect, useMemo, useRef, useState } from "react";
  import supabase from "../lib/supabaseClient";
- import { createApiClient } from "../lib/apiClient";
- 
- const api = createApiClient(() => supabase.auth.getSession());
+ import { createApiClient, configureApiBaseGetter } from "../lib/apiClient";
+ import { useApiConfig } from "../context/ApiConfigContext";
  
  export default function useChatApi() {
+   const { getApiBaseUrl } = useApiConfig();
+
+   // Ensure api client uses current base at call time
+   configureApiBaseGetter(getApiBaseUrl);
+
+   // Create API instance bound to Supabase session getter
+   const api = useMemo(() => createApiClient(() => supabase.auth.getSession()), []);
+
    const [sessions, setSessions] = useState([]); // [{id,title,...}]
    const [activeSessionId, setActiveSessionId] = useState(null);
    const [loadingSessions, setLoadingSessions] = useState(false);
