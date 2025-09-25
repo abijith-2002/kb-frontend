@@ -8,6 +8,7 @@ This project provides a minimal React template with a clean, modern UI and minim
 - **Modern UI**: Clean, responsive design with KAVIA brand styling
 - **Fast**: Minimal dependencies for quick loading times
 - **Simple**: Easy to understand and modify
+- **Configurable Backend**: A persistent status pill indicates Online/Offline by polling `/` and opens a dialog to configure the backend API base URL (persisted in localStorage). All API calls (including auth) use this base URL.
 
 ## Getting Started
 

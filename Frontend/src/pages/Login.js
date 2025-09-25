@@ -7,6 +7,7 @@
  import { useState, useEffect } from "react";
  import { Link, useNavigate } from "react-router-dom";
  import supabase from "../lib/supabaseClient";
+ import { authLogin } from "../lib/apiClient";
  
  export default function Login() {
    const navigate = useNavigate();
@@ -30,11 +31,30 @@
      setErr("");
      setLoading(true);
      try {
-       const { error } = await supabase.auth.signInWithPassword({
+       // 1) Log in via backend
+       const tokenResp = await authLogin({
          email: form.email,
          password: form.password,
        });
-       if (error) throw error;
+       // tokenResp: { access_token, token_type }
+       if (!tokenResp?.access_token) {
+         throw new Error("No access token returned by backend.");
+       }
+       // 2) Set Supabase session using the returned JWT access token
+       const { data: sessData, error: sessErr } = await supabase.auth.setSession({
+         access_token: tokenResp.access_token,
+         refresh_token: tokenResp.access_token, // backend may not return refresh token; set both for compatibility
+       });
+       if (sessErr) {
+         throw sessErr;
+       }
+       if (!sessData?.session) {
+         // If setSession didn't yield a session, fall back to fetching user
+         const { data: userData, error: userErr } = await supabase.auth.getUser();
+         if (userErr || !userData?.user) {
+           throw new Error("Failed to establish authenticated session.");
+         }
+       }
        navigate("/dashboard", { replace: true });
      } catch (e2) {
        setErr(e2.message || "Failed to log in.");

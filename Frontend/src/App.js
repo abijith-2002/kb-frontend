@@ -6,6 +6,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import { ApiConfigProvider } from "./lib/useApiConfig";
+import ApiStatusAndConfig from "./components/ApiStatusAndConfig";
 
 /**
  * PUBLIC_INTERFACE
@@ -20,26 +22,30 @@ import Dashboard from "./pages/Dashboard";
 function App() {
   return (
     <BrowserRouter>
-      {/* Global app wrapper uses bg-app-bg which maps to #232628 */}
-      <div className="min-h-screen flex flex-col bg-app-bg text-app-onbg overflow-hidden">
-        <NavBar />
-        <main className="flex-1 overflow-hidden">
-          <Routes>
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route
-              path="/dashboard"
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </main>
-      </div>
+      <ApiConfigProvider>
+        {/* Global app wrapper uses bg-app-bg which maps to #232628 */}
+        <div className="min-h-screen flex flex-col bg-app-bg text-app-onbg overflow-hidden">
+          <NavBar />
+          <main className="flex-1 overflow-hidden">
+            <Routes>
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </main>
+          {/* Persistent online/offline indicator + config dialog */}
+          <ApiStatusAndConfig />
+        </div>
+      </ApiConfigProvider>
     </BrowserRouter>
   );
 }

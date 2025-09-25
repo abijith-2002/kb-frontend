@@ -7,6 +7,7 @@
  import { useState } from "react";
  import { Link, useNavigate } from "react-router-dom";
  import supabase from "../lib/supabaseClient";
+ import { authSignup, authLogin } from "../lib/apiClient";
  
  export default function Signup() {
    const navigate = useNavigate();
@@ -23,22 +24,34 @@
      setErr("");
      setLoading(true);
      try {
-       const { data, error } = await supabase.auth.signUp({
+       // 1) Create user via backend
+       await authSignup({
          email: form.email,
          password: form.password,
-         options: {
-           data: { full_name: form.full_name || null },
-           emailRedirectTo: process.env.REACT_APP_SITE_URL || window.location.origin,
-         },
+         full_name: form.full_name,
        });
-       if (error) throw error;
- 
-       if (data.session) {
-         navigate("/dashboard", { replace: true });
-       } else {
-         // Email confirmation likely needed; send to login.
+       // 2) Immediately log in to obtain token/session (if backend requires email confirmation, this may fail)
+       try {
+         const tokenResp = await authLogin({
+           email: form.email,
+           password: form.password,
+         });
+         if (tokenResp?.access_token) {
+           const { error: sessErr } = await supabase.auth.setSession({
+             access_token: tokenResp.access_token,
+             refresh_token: tokenResp.access_token,
+           });
+           if (sessErr) throw sessErr;
+           navigate("/dashboard", { replace: true });
+           return;
+         }
+       } catch (_e) {
+         // If immediate login isn't possible (e.g., email confirmation required), route to login
          navigate("/login", { replace: true });
+         return;
        }
+       // Fallback: route to login
+       navigate("/login", { replace: true });
      } catch (e2) {
        setErr(e2.message || "Failed to sign up.");
      } finally {
